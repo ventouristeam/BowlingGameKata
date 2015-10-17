@@ -63,4 +63,11 @@ public class FrameTest {
 
         Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(0);
     }
+
+    @Test
+    public void getAantalNogKansenNaStrike_0() {
+        frame.gooi(10);
+
+        Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(0);
+    }
 }

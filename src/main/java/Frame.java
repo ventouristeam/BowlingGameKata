@@ -23,7 +23,7 @@ public class Frame {
     }
 
     public int getAantalNietGebruikteKansen() {
-        return MAXIMUM_AANTAL_KANSEN - gebruikteKansen;
+        return omgegooideKegels < AANTAL_KEGELS ? MAXIMUM_AANTAL_KANSEN - gebruikteKansen : 0;
     }
 
     private void validateWorp(int kegels) {
