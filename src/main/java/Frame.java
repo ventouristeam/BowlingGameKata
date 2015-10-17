@@ -1,20 +1,20 @@
 public class Frame {
 
-    private final static int MAXIMUM_AANTAL_KANSEN = 2;
+    private final static int MAXIMUM_AANTAL_WORPEN = 2;
     private final static int AANTAL_KEGELS = 10;
 
-    private int gebruikteKansen;
+    private int aantalWorpen;
     private int omgegooideKegels;
 
     public Frame() {
-        gebruikteKansen = 0;
+        aantalWorpen = 0;
         omgegooideKegels = 0;
     }
 
     public void gooi(int kegels) {
         isGooiToegelaten();
         validateWorp(kegels);
-        gebruikteKansen++;
+        aantalWorpen++;
         omgegooideKegels = berekenHoeveelKegelsNeerliggen(kegels);
     }
 
@@ -23,7 +23,15 @@ public class Frame {
     }
 
     public int getAantalNietGebruikteKansen() {
-        return omgegooideKegels < AANTAL_KEGELS ? MAXIMUM_AANTAL_KANSEN - gebruikteKansen : 0;
+        return omgegooideKegels < AANTAL_KEGELS ? MAXIMUM_AANTAL_WORPEN - aantalWorpen : 0;
+    }
+
+    public boolean isStrike() {
+        return aantalWorpen == 1 && omgegooideKegels == AANTAL_KEGELS;
+    }
+
+    public boolean isSpare() {
+        return aantalWorpen == MAXIMUM_AANTAL_WORPEN && omgegooideKegels == AANTAL_KEGELS;
     }
 
     private void validateWorp(int kegels) {
