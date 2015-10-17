@@ -4,48 +4,38 @@ import java.util.stream.Stream;
 
 public class BowlingGame {
 
-    private final static int AANTAL_FRAMES = 10;
+    private final List<Frame> frames;
+    private Frame waitingFrame;
 
-    private final List<Frame> teGebruikenFrames;
-    private final List<Frame> opGebruikteFrames;
+    private final static int MAXIMUM_AANTAL_FRAMES = 10;
 
     public BowlingGame() {
-        teGebruikenFrames = new ArrayList<>();
-        opGebruikteFrames = new ArrayList<>();
-        fillUnusedFrames();
+        frames = new ArrayList<>();
+        waitingFrame = new Frame();
     }
 
     public void gooi(int kegels) {
-        getFirstUnusedFrame().gooi(kegels);
-        verplaatstEersteFrameIndienHetOpgebruiktIs();
-    }
-
-    private Frame getFirstUnusedFrame() {
-        valideerDatErNogUnUsedFramesZijn();
-        return teGebruikenFrames.get(0);
-    }
-
-    private void verplaatstEersteFrameIndienHetOpgebruiktIs() {
-        if (getFirstUnusedFrame().getAantalNietGebruikteKansen() == 0) {
-            opGebruikteFrames.add(getFirstUnusedFrame());
-            teGebruikenFrames.remove(getFirstUnusedFrame());
-        }
-    }
-
-    private void valideerDatErNogUnUsedFramesZijn() {
-        if(teGebruikenFrames.isEmpty()) {
-            throw new IllegalStateException("Er zijn geen unused frames meer");
-        }
+        valideerDatDeFrameListNogNietVolZit();
+        waitingFrame.gooi(kegels);
+        verplaatsVerwerkteFrameIndienKansenOpgebruiktZijn(waitingFrame);
     }
 
     public int getScore() {
-        return Stream.concat(opGebruikteFrames.stream(), teGebruikenFrames.stream()).mapToInt(Frame::getOmgegooideKegels).sum();
+        return Stream.concat(frames.stream(), Stream.of(waitingFrame)).mapToInt(Frame::getOmgegooideKegels).sum();
     }
 
-    private void fillUnusedFrames() {
-        for (int i = 0; i < AANTAL_FRAMES; i++) {
-            teGebruikenFrames.add(new Frame());
+    private void verplaatsVerwerkteFrameIndienKansenOpgebruiktZijn(Frame verwerkteFrame) {
+        if (verwerkteFrame.getAantalNietGebruikteKansen() == 0) {
+            frames.add(waitingFrame);
+            waitingFrame = new Frame();
         }
     }
+
+    private void valideerDatDeFrameListNogNietVolZit() {
+        if(frames.size() == MAXIMUM_AANTAL_FRAMES) {
+            throw new IllegalStateException("Alle frames zijn opgebruikt");
+        }
+    }
+
 
 }
