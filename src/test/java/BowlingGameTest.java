@@ -100,6 +100,7 @@ public class BowlingGameTest {
         bowlingGame.gooi(0);
     }
 
+    @Test
     public void gooiStrike_VolgendeGooiZitInVolgendeFrame() {
         bowlingGame.gooi(10);
         bowlingGame.gooi(8);
