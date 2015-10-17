@@ -16,16 +16,19 @@ public class BowlingGame {
     }
 
     public void gooi(int kegels) {
-        valideerDatErNogUnUsedFramesZijn();
-        Frame firstUnusedFrame = teGebruikenFrames.iterator().next();
-        firstUnusedFrame.gooi(kegels);
-        verplaatsFrameIndienHetOpgebruiktIs(firstUnusedFrame);
+        getFirstUnusedFrame().gooi(kegels);
+        verplaatstEersteFrameIndienHetOpgebruiktIs();
     }
 
-    private void verplaatsFrameIndienHetOpgebruiktIs(Frame firstUnusedFrame) {
-        if (firstUnusedFrame.getAantalNietGebruikteKansen() == 0) {
-            opGebruikteFrames.add(firstUnusedFrame);
-            teGebruikenFrames.remove(firstUnusedFrame);
+    private Frame getFirstUnusedFrame() {
+        valideerDatErNogUnUsedFramesZijn();
+        return teGebruikenFrames.get(0);
+    }
+
+    private void verplaatstEersteFrameIndienHetOpgebruiktIs() {
+        if (getFirstUnusedFrame().getAantalNietGebruikteKansen() == 0) {
+            opGebruikteFrames.add(getFirstUnusedFrame());
+            teGebruikenFrames.remove(getFirstUnusedFrame());
         }
     }
 
