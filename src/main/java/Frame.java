@@ -13,6 +13,7 @@ public class Frame {
 
     public void gooi(int kegels) {
         validateWorp(kegels);
+        gebruikteKansen++;
         omgegooideKegels += kegels;
     }
 
@@ -24,5 +25,9 @@ public class Frame {
 
     public int getOmgegooideKegels() {
         return omgegooideKegels;
+    }
+
+    public int getAantalNietGebruikteKansen() {
+        return MAXIMUM_AANTAL_KANSEN - gebruikteKansen;
     }
 }

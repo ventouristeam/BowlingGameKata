@@ -36,4 +36,24 @@ public class FrameTest {
         frame.gooi(4);
         frame.gooi(8);
     }
+
+    @Test
+    public void getAantalNogTeGebruikenKansenZonderWorp() {
+        Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(2);
+    }
+
+    @Test
+    public void getAantalNogTeGebruikenKansenNa1Worp() {
+        frame.gooi(3);
+
+        Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(1);
+    }
+
+    @Test
+    public void getAantalNogKansenNatweeWorpen() {
+        frame.gooi(3);
+        frame.gooi(4);
+
+        Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(0);
+    }
 }
