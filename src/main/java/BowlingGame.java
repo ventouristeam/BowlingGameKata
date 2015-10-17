@@ -6,38 +6,42 @@ public class BowlingGame {
 
     private final static int AANTAL_FRAMES = 10;
 
-    private final List<Frame> unUsedframes;
-    private final List<Frame> usedFrames;
+    private final List<Frame> teGebruikenFrames;
+    private final List<Frame> opGebruikteFrames;
 
     public BowlingGame() {
-        unUsedframes = new ArrayList<>();
-        usedFrames = new ArrayList<>();
+        teGebruikenFrames = new ArrayList<>();
+        opGebruikteFrames = new ArrayList<>();
         fillUnusedFrames();
     }
 
     public void gooi(int kegels) {
         valideerDatErNogUnUsedFramesZijn();
-        Frame firstUnusedFrame = unUsedframes.iterator().next();
+        Frame firstUnusedFrame = teGebruikenFrames.iterator().next();
         firstUnusedFrame.gooi(kegels);
+        verplaatsFrameIndienHetOpgebruiktIs(firstUnusedFrame);
+    }
+
+    private void verplaatsFrameIndienHetOpgebruiktIs(Frame firstUnusedFrame) {
         if (firstUnusedFrame.getAantalNietGebruikteKansen() == 0) {
-            usedFrames.add(firstUnusedFrame);
-            unUsedframes.remove(firstUnusedFrame);
+            opGebruikteFrames.add(firstUnusedFrame);
+            teGebruikenFrames.remove(firstUnusedFrame);
         }
     }
 
     private void valideerDatErNogUnUsedFramesZijn() {
-        if(unUsedframes.isEmpty()) {
+        if(teGebruikenFrames.isEmpty()) {
             throw new IllegalStateException("Er zijn geen unused frames meer");
         }
     }
 
     public int getScore() {
-        return Stream.concat(usedFrames.stream(), unUsedframes.stream()).mapToInt(Frame::getOmgegooideKegels).sum();
+        return Stream.concat(opGebruikteFrames.stream(), teGebruikenFrames.stream()).mapToInt(Frame::getOmgegooideKegels).sum();
     }
 
     private void fillUnusedFrames() {
         for (int i = 0; i < AANTAL_FRAMES; i++) {
-            unUsedframes.add(new Frame());
+            teGebruikenFrames.add(new Frame());
         }
     }
 
