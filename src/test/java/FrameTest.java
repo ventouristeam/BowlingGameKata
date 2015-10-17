@@ -37,6 +37,13 @@ public class FrameTest {
         frame.gooi(8);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void gooiHoewelJeGeenKansenMeerHebt() {
+        frame.gooi(1);
+        frame.gooi(1);
+        frame.gooi(1);
+    }
+
     @Test
     public void getAantalNogTeGebruikenKansenZonderWorp() {
         Assertions.assertThat(frame.getAantalNietGebruikteKansen()).isEqualTo(2);
