@@ -16,11 +16,18 @@ public class BowlingGame {
     }
 
     public void gooi(int kegels) {
+        valideerDatErNogUnUsedFramesZijn();
         Frame firstUnusedFrame = unUsedframes.iterator().next();
         firstUnusedFrame.gooi(kegels);
         if (firstUnusedFrame.getAantalNietGebruikteKansen() == 0) {
             usedFrames.add(firstUnusedFrame);
             unUsedframes.remove(firstUnusedFrame);
+        }
+    }
+
+    private void valideerDatErNogUnUsedFramesZijn() {
+        if(unUsedframes.isEmpty()) {
+            throw new IllegalStateException("Er zijn geen unused frames meer");
         }
     }
 
