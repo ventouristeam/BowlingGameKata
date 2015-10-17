@@ -10,4 +10,19 @@ public class Frame {
         gebruikteKansen = 0;
         omgegooideKegels = 0;
     }
+
+    public void gooi(int kegels) {
+        validateWorp(kegels);
+        omgegooideKegels += kegels;
+    }
+
+    private void validateWorp(int kegels) {
+        if(omgegooideKegels + kegels > 10) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public int getOmgegooideKegels() {
+        return omgegooideKegels;
+    }
 }
