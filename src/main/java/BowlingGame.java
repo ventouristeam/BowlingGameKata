@@ -1,41 +1,20 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Stream.concat;
+import static java.util.stream.Stream.of;
 
 public class BowlingGame {
 
-    private final List<Frame> frames;
-    private Frame waitingFrame;
-
-    private final static int MAXIMUM_AANTAL_FRAMES = 10;
+    private final FrameHolder frameHolder;
 
     public BowlingGame() {
-        frames = new ArrayList<>();
-        waitingFrame = new Frame();
+        frameHolder = new FrameHolder();
     }
 
     public void gooi(int kegels) {
-        valideerDatDeFrameListNogNietVolZit();
-        waitingFrame.gooi(kegels);
-        verplaatsVerwerkteFrameIndienKansenOpgebruiktZijn(waitingFrame);
+        frameHolder.verwerkWorp(kegels);
     }
 
-    public int getScore() {
-        return Stream.concat(frames.stream(), Stream.of(waitingFrame)).mapToInt(Frame::getOmgegooideKegels).sum();
+    public int berekenScore() {
+        return new ScoreCalculator(frameHolder.getFrames()).berekenScore();
     }
-
-    private void verplaatsVerwerkteFrameIndienKansenOpgebruiktZijn(Frame verwerkteFrame) {
-        if (verwerkteFrame.getAantalNietGebruikteKansen() == 0) {
-            frames.add(waitingFrame);
-            waitingFrame = new Frame();
-        }
-    }
-
-    private void valideerDatDeFrameListNogNietVolZit() {
-        if(frames.size() == MAXIMUM_AANTAL_FRAMES) {
-            throw new IllegalStateException("Alle frames zijn opgebruikt");
-        }
-    }
-
-
 }

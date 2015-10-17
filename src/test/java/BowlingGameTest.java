@@ -1,4 +1,3 @@
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,14 +14,14 @@ public class BowlingGameTest {
 
     @Test
     public void gooi0keer_omgegooideKegels_WordenAanScoreToegevoegd() {
-        assertThat(bowlingGame.getScore()).isZero();
+        assertThat(bowlingGame.berekenScore()).isZero();
     }
 
     @Test
     public void gooi1keer_omgegooideKegels_WordenAanScoreToegevoegd() {
         bowlingGame.gooi(5);
 
-        assertThat(bowlingGame.getScore()).isEqualTo(5);
+        assertThat(bowlingGame.berekenScore()).isEqualTo(5);
     }
 
     @Test
@@ -31,7 +30,7 @@ public class BowlingGameTest {
         bowlingGame.gooi(2);
         bowlingGame.gooi(6);
 
-        assertThat(bowlingGame.getScore()).isEqualTo(13);
+        assertThat(bowlingGame.berekenScore()).isEqualTo(13);
     }
 
     @Test
@@ -64,7 +63,7 @@ public class BowlingGameTest {
         bowlingGame.gooi(6);
         bowlingGame.gooi(2);
 
-        assertThat(bowlingGame.getScore()).isEqualTo(76);
+        assertThat(bowlingGame.berekenScore()).isEqualTo(76);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -105,7 +104,7 @@ public class BowlingGameTest {
         bowlingGame.gooi(10);
         bowlingGame.gooi(8);
 
-        assertThat(bowlingGame.getScore()).isEqualTo(18);
+        assertThat(bowlingGame.berekenScore()).isEqualTo(18);
     }
 
     @Test(expected = IllegalArgumentException.class)
