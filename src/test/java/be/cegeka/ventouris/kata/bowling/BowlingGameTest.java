@@ -24,6 +24,16 @@ public class BowlingGameTest {
         assertScore(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void roll_teveelKegels() {
+        roll(11);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void roll_teWeinigKegels() {
+        roll(-1);
+    }
+
     @Test
     public void rollFrame_ScoreIsSomVanDe2Rolls() {
         rollFrame(1, 2);
