@@ -1,24 +1,24 @@
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BowlingGameTest {
+public class SpelerTest {
 
-    private BowlingGame game;
+    private Speler speler;
 
     @Before
     public void setUp() {
-        game = new BowlingGame();
+        speler = new Speler();
     }
 
     @Test
     public void rollTeltPuntenBij() {
-        game.roll(10);
+        speler.roll(10);
 
-        assertThat(game.getScore()).isEqualTo(10);
+        assertThat(speler.getScore()).isEqualTo(10);
     }
+
 
 
 
