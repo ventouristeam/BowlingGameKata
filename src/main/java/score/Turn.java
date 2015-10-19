@@ -10,10 +10,10 @@ public class Turn {
     }
 
     public boolean isSpare() {
-        return false;
+        return (firstThrow != 10) && (firstThrow + secondThrow) == 10;
     }
 
     public boolean isStrike() {
-        return false;
+        return (firstThrow == 10);
     }
 }
