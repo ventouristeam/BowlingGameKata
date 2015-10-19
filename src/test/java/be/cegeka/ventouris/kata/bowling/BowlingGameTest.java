@@ -1,6 +1,7 @@
 package be.cegeka.ventouris.kata.bowling;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -55,6 +56,16 @@ public class BowlingGameTest {
         rollFrame(9, 0);
 
         assertScore(90);
+    }
+
+    // TODO unignore
+    @Ignore
+    @Test
+    public void alsJeEenSpareRolt_TeltDeVolgendeWorpDubbel() {
+        rollFrame(5, 5);
+        rollFrame(2, 6);
+
+        assertScore(20);
     }
 
     private void roll(int pins) {
