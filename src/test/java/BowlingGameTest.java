@@ -13,5 +13,14 @@ public class BowlingGameTest {
     }
 
 
+    @Test
+    public void test_2Kegels_2Punten() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(2);
+
+        Assertions.assertThat(game.score()).isEqualTo(2);
+    }
+
 
 }
