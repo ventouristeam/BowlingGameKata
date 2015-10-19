@@ -1,5 +1,11 @@
 package be.cegeka.ventouris.kata.bowling;
 
+// TODO validatie aantal fames max 10
+// TODO validatie per frame niet meer dan 10 kegels (behalve bij laatste frame)
+// TODO speciaal gedrag laatste frame
+// TODO bonus bij spare
+// TODO bonus bij strike
+// TODO bonus bij meerdere strikes/spares na mekaar
 public class BowlingGame {
 
     private int score;
