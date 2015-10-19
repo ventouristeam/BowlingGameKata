@@ -2,6 +2,7 @@ package be.cegeka.bowlinggame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BowlingGame {
 
@@ -16,11 +17,15 @@ public class BowlingGame {
     }
 
     public void roll(int pins) {
-        frames.get(currentFrame).roll(pins);
+        Frame frame = frames.get(currentFrame);
+        frame.roll(pins);
+        if (frame.rolls() == 2){
+            currentFrame++;
+        }
     }
 
     public int score() {
-        return frames.get(currentFrame).score();
+        return frames.stream().collect(Collectors.summingInt(Frame::score));
     }
 
     public List<Frame> getFrames() {
