@@ -1,11 +1,13 @@
 public class BowlingGame {
 
+    private int points;
+
     public void roll(int pins) {
-        throw new RuntimeException("not yet implemented");
+        points +=pins;
     }
 
-    public int score() {
-        throw new RuntimeException("not yet implemented");
+    public int getScore() {
+        return points;
     }
 
 }
