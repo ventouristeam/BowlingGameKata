@@ -6,7 +6,7 @@ public class Speler {
     private Collection<Frame> frames = new ArrayList<>();
 
     public void roll(int pins) {
-        //TODO implement second roll
+        //TODO implement second roll en nieuwe frame bij strike
         Frame frame = new Frame();
         frame.roll(pins);
         frames.add(frame);
@@ -20,4 +20,7 @@ public class Speler {
         return score;
     }
 
+    public int getAantalFrames() {
+        return frames.size();
+    }
 }
