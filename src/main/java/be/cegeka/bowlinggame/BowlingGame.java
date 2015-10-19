@@ -1,9 +1,12 @@
+package be.cegeka.bowlinggame;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BowlingGame {
 
     private List<Frame> frames;
+    private int currentFrame = 0;
 
     public BowlingGame() {
         this.frames = new ArrayList<>();
@@ -13,11 +16,11 @@ public class BowlingGame {
     }
 
     public void roll(int pins) {
-        throw new RuntimeException("not yet implemented");
+        frames.get(currentFrame).roll(pins);
     }
 
     public int score() {
-        throw new RuntimeException("not yet implemented");
+        return frames.get(currentFrame).score();
     }
 
     public List<Frame> getFrames() {
