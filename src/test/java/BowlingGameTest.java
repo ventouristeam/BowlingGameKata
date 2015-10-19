@@ -22,5 +22,13 @@ public class BowlingGameTest {
         Assertions.assertThat(game.score()).isEqualTo(2);
     }
 
+    @Test
+    public void test_1Worp_1Frame() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(1);
+
+        Assertions.assertThat(game.getFrames()).hasSize(1);
+    }
 
 }
