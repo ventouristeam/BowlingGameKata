@@ -2,16 +2,20 @@ package score;
 
 import player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScoreBoard {
 
     private Player player;
-    private int score;
+
+    private List<Integer> scores = new ArrayList<>();
 
     public void roll(int pins) {
-        score += pins;
+        scores.add(pins);
     }
 
     public int getScore() {
-        return score;
+        return scores.stream().mapToInt(i -> i).sum();
     }
 }
